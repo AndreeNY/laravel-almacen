@@ -16,28 +16,33 @@ Route::get('/', function()
 	return View::make('index');
 });
 
-Route::get('/productos', function()
-{
-	return View::make('products');
-});
 
-Route::get('/productos', function(){
-	$products=[
-		["id"=>1, "nombre" => "Producto 1"],
-		["id"=>2, "nombre" => "Producto 2"],
-		["id"=>3, "nombre" => "Producto 3"],
-		["id"=>4, "nombre" => "Producto 4"],
-	];
-	return View::make('products');
-});
+Route::get('/categorias', 'CategoriaController@getCategorias');
+Route::get('/categorias/crear', 'CategoriaController@crearCategorias');
+Route::get('/categorias/editar/{id}', 'CategoriaController@editarCategorias');
+Route::get('/categorias/eliminar/{id}', 'CategoriaController@deleteCategorias');
+Route::post('/categorias', 'CategoriaController@saveCategorias');
+Route::get('/categorias/{id}', 'CategoriaController@getCategoria');
 
-Route::get('/categorias', function()
-{
-	return View::make('categories');
-});
+Route::get('/productos', 'ProductoController@getProductos');
+Route::get('/productos/crear', 'ProductoController@crearProductos');
+Route::get('/productos/editar/{id}', 'ProductoController@editarProductos');
+Route::get('/productos/eliminar/{id}', 'ProductoController@deleteProductos');
+Route::post('/productos', 'ProductoController@saveProductos');
+Route::get('/productos/{id}', 'ProductoController@getProducto');
 
-Route::get('/ordenes', function()
-{
-	return View::make('orders');
-});
+
+Route::get('/unidades', 'UnidadesController@getUnidades');
+Route::get('/unidades/crear', 'UnidadesController@crearunidades');
+Route::get('/unidades/modificar/{id}', 'UnidadesController@modificarunidades'); //debe coincidir ese id con el controllercateogria
+Route::get('/unidades/eliminar/{id}', 'UnidadesController@DeleteUnidades');
+Route::post('/unidades', 'UnidadesController@saveUnidad');
+Route::get('/unidades/{id}', 'ProductoController@getUnidades');
+
+//Rutas de API
+
+Route::get('/api/categorias', 'APIController@getCategoria');
+Route::get('/api/productos', 'APIController@getProductos');
+
+
 
